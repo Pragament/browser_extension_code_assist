@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Code Extractor Sidebar",
+  "version": "1.0",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "action": {
+  "default_title": "Code Extractor"
+},
+  "background": {
+    "service_worker": "background.js"
+  },
+ "content_scripts": [
+  {
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "all_frames": true
+  }
+],
+  "options_page": "options.html",
+ "web_accessible_resources": [
+  {
+    "resources": ["sidebar.html", "sidebar.js", "sidebar.css"],
+    "matches": ["<all_urls>"]
+  }
+]
+}
