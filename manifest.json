@@ -2,25 +2,29 @@
   "manifest_version": 3,
   "name": "Code Extractor Sidebar",
   "version": "1.0",
+  "description": "Extract code from websites using CSS selectors or iframes and chat with a local AI model.",
   "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
   "action": {
-  "default_title": "Code Extractor"
-},
+    "default_title": "Code Extractor",
+    "default_popup": "popup.html"
+  },
   "background": {
     "service_worker": "background.js"
   },
- "content_scripts": [
-  {
-    "matches": ["<all_urls>"],
-    "js": ["content.js"],
-    "all_frames": true
-  }
-],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": false,
+      "run_at": "document_idle"
+    }
+  ],
   "options_page": "options.html",
- "web_accessible_resources": [
-  {
-    "resources": ["sidebar.html", "sidebar.js", "sidebar.css"],
-    "matches": ["<all_urls>"]
-  }
-]
+  "web_accessible_resources": [
+    {
+      "resources": ["sidebar.html", "sidebar.js", "sidebar.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
