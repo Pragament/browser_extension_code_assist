@@ -2,11 +2,41 @@
 <html>
 <head>
   <title>Code Extractor Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      width: 400px; /* Wider for better usability */
+    }
+    input, button {
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    li {
+      font-size: 14px;
+    }
+    #pythonApiUrl {
+      display: none; /* Hidden by default */
+      margin-top: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Add Rule</h2>
-  <input id="pattern" placeholder="URL pattern (RegEx)" />
-  <input id="selector" placeholder="CSS Selector" />
+  <h2>Code Extractor Options</h2>
+  <h3>Add Rule</h3>
+  <input type="text" id="pattern" placeholder="URL pattern (RegEx)" />
+  <input type="text" id="selector" placeholder="CSS Selector" />
+  <div>
+    <label><input type="radio" name="apiType" value="prompt" checked> Prompt API</label>
+    <label><input type="radio" name="apiType" value="python"> Python API</label>
+  </div>
+  <input type="text" id="pythonApiUrl" placeholder="Python API URL" />
   <button id="addRuleBtn">Add Rule</button>
 
   <h3>Rules:</h3>
