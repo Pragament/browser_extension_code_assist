@@ -1,27 +1,17 @@
-# Code Extractor Chrome Extension
+# 🧠 Code Extractor Sidebar Chrome Extension
 
-A Chrome extension that extracts code from web pages, injects a chat sidebar, and allows users to query the code using an AI model via a local API server.
+This Chrome extension injects a sidebar into W3Schools TryIt editor pages. It automatically extracts the code from the iframe and interacts with a local Python API powered by [Ollama](https://ollama.com/) (e.g., CodeLlama or similar) to provide intelligent code suggestions or explanations.
 
-## Overview
+---
 
-This project combines a Chrome extension with a Flask-based API server to provide an interactive code analysis tool. The extension extracts code from specified web pages (e.g., W3Schools try-it pages) and uses an AI model (e.g., TinyLLaMA) hosted via Ollama to respond to user prompts. Users can manage rules for code extraction and choose between a default Prompt API or a custom Python API.
+## 🚀 Features
 
-## Features
-- Extracts code from web pages based on user-defined URL patterns and CSS selectors.
-- Injects a chat sidebar for interacting with extracted code.
-- Supports two API modes: Prompt API (default local Ollama server) and Python API (custom URL).
-- Manages rules via the options page.
-- Integrates with Ollama for AI-powered code explanations.
+- Injects a floating sidebar in W3Schools TryIt editor.
+- Extracts HTML/CSS/JS code from the live preview iframe.
+- Sends the extracted code and your prompt to a Python backend running Ollama.
+- Displays AI-generated responses (code help, suggestions, explanations) in the sidebar.
 
-## Prerequisites
-- **Python 3.x**
-- **Node.js** (for potential future enhancements, though not currently required)
-- **Chrome Browser**
-- **Ollama** (for running the AI model)
-- **Git** (for version control, optional)
-
-## Installation
-1.Ollama pull tinyllama
+---
 
 ## 🧩 Chrome Extension Setup
 
@@ -40,9 +30,3 @@ This project combines a Chrome extension with a Flask-based API server to provid
 ```bash
 pip install -r requirements.txt
 python ollama_api.py
-
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/code-extractor.git
-cd code-extractor
