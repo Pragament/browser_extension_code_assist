@@ -25,6 +25,9 @@
       display: none; /* Hidden by default */
       margin-top: 5px;
     }
+    #maxAttemptsContainer {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -41,6 +44,12 @@
 
   <h3>Rules:</h3>
   <ul id="ruleList"></ul>
+
+  <div id="maxAttemptsContainer">
+    <h3>Auto Correct Settings</h3>
+    <label for="maxAttempts">Max Auto Correct Attempts:</label>
+    <input type="number" id="maxAttempts" min="1" value="5">
+  </div>
 
   <script src="options.js"></script>
 </body>

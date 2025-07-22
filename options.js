@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ruleList = document.getElementById("ruleList");
   const apiTypeRadios = document.getElementsByName("apiType");
   const pythonApiUrlInput = document.getElementById("pythonApiUrl");
+  const maxAttemptsInput = document.getElementById("maxAttempts");
 
   // Toggle visibility of Python API URL input based on radio selection
   apiTypeRadios.forEach(radio => {
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       chrome.storage.sync.set({ rules }, () => {
         const item = document.createElement("li");
-        item.textText = `Pattern: ${pattern}, Selector: ${selector}, API Type: ${selectedApiType}${selectedApiType === "python" ? `, Python URL: ${pythonApiUrl}` : ""}`;
+        item.textContent = `Pattern: ${pattern}, Selector: ${selector}, API Type: ${selectedApiType}${selectedApiType === "python" ? `, Python URL: ${pythonApiUrl}` : ""}`;
         ruleList.appendChild(item);
 
         patternInput.value = "";
@@ -52,12 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Load existing rules
-  chrome.storage.sync.get({ rules: [] }, (data) => {
+  // Save maxAttempts on change
+  maxAttemptsInput.addEventListener("change", () => {
+    const maxAttempts = parseInt(maxAttemptsInput.value) || 5;
+    chrome.storage.sync.set({ maxAttempts }, () => {
+      alert("Max Attempts saved!");
+    });
+  });
+
+  // Load existing rules and maxAttempts
+  chrome.storage.sync.get({ rules: [], maxAttempts: 5 }, (data) => {
     for (const rule of data.rules) {
       const item = document.createElement("li");
       item.textContent = `Pattern: ${rule.pattern}, Selector: ${rule.selector}, API Type: ${rule.apiType}${rule.apiType === "python" ? `, Python URL: ${rule.pythonApiUrl}` : ""}`;
       ruleList.appendChild(item);
     }
+    maxAttemptsInput.value = data.maxAttempts; // Load saved or default value
   });
 });
